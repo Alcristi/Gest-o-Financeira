@@ -1,16 +1,16 @@
-import {Alocacao} from '../model/schemas/Alocacao'
+import {Allocation} from '../model/schemas/Allocation'
 import {Request,Response} from 'express'
-import { TAlocacao } from '../model/types/Alocacao.types';
+import { TypeAllocation } from '../model/types/Alocacao.types';
 import { ConsultJsonDto } from '../model/dto/ConsultJson.dto';
 
-export const consultAlocacao= async(request:Request,response:Response) => {
+export const consultAllocation= async(request:Request,response:Response) => {
 
 	const {cnpj,valor}:{cnpj:string,valor:number} = request.body;
-	let alocacoes = await Alocacao.find({cnpj})
-
-	if(alocacoes[0] !== undefined)
-	{
-		let responseJson:ConsultJsonDto = {
+	try{
+		let alocacoes = await Allocation.find({cnpj})
+		if(alocacoes[0] !== undefined)
+		{
+			let responseJson:ConsultJsonDto = {
 			cnpj:cnpj,
 			razaoSocial:alocacoes[0].razaoSocial,
 			dataConsulta:parseData(),
@@ -19,12 +19,15 @@ export const consultAlocacao= async(request:Request,response:Response) => {
 			valorMedio: valorMedio(alocacoes),
 			retorno: retornoCotas(alocacoes,valor),
 			saldo: valor*totalDeCotas(alocacoes),
-		};
-		return response.render('consultView',{responseJson})
+			};
+			return response.render('consultView',{responseJson})
+		}
+		else
+			throw new Error("CNPJ não encontrado")
 	}
-	else
+	catch(err:any)
 	{
-		return response.status(400).send({error:"CNPJ não encontrado"})
+		return response.status(400).send({error:err.message})
 	}
 }
 
@@ -39,7 +42,7 @@ const parseData = ():string =>{
 	return (str)
 }
 
-const totalDeCotas = (alocacoes :Array<TAlocacao>):number =>{
+const totalDeCotas = (alocacoes :Array<TypeAllocation>):number =>{
 	let numeroCotas:number = 0;
 
 	alocacoes.forEach((Element) =>
@@ -52,7 +55,7 @@ const totalDeCotas = (alocacoes :Array<TAlocacao>):number =>{
 	return numeroCotas;
 }
 
-const valorMedio = (alocacoes:Array<TAlocacao>):number =>{
+const valorMedio = (alocacoes:Array<TypeAllocation>):number =>{
 	let media:number = 0;
 	let totalPonderado:number = 0;
 	let totalCotas:number = 0;
@@ -67,12 +70,12 @@ const valorMedio = (alocacoes:Array<TAlocacao>):number =>{
 	return(media);
 }
 
-const retornoCotas = (alocacoes:Array<TAlocacao>,valor:number):number=>{
+const retornoCotas = (alocacoes:Array<TypeAllocation>,valor:number):number=>{
 	let media:number = valorMedio(alocacoes);
 	return((valor/media) - 1);
 }
 
-const saldo  =  (alocacoes:Array<TAlocacao>,valor:number):number =>{
+const saldo  =  (alocacoes:Array<TypeAllocation>,valor:number):number =>{
 	return (valor*totalDeCotas(alocacoes));
 }
 

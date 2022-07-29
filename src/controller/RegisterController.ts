@@ -1,10 +1,10 @@
-import {Alocacao} from '../model/schemas/Alocacao'
+import {Allocation} from '../model/schemas/Allocation'
 import {Request,Response} from 'express'
-import { TAlocacao } from '../model/types/Alocacao.types';
+import { TypeAllocation } from '../model/types/Alocacao.types';
 
-export const registerAlocacao= async (request:Request,response:Response) => {
+export const registerAllocation = async (request:Request,response:Response) => {
 
-	let {cnpj,razaoSocial,operacao,dataOperacao,cotas,valor}:TAlocacao = request.body;
+	let {cnpj,razaoSocial,operacao,dataOperacao,cotas,valor}:TypeAllocation = request.body;
 	if(!cnpj || !razaoSocial || !operacao || !dataOperacao || !cotas || !valor){
 		console.log(request.body);
 		response.status(401).send({error:'Fill field is empty'});
@@ -14,7 +14,7 @@ export const registerAlocacao= async (request:Request,response:Response) => {
 	{
 		try{
 			console.log(request.body)
-			const newAlocation = new Alocacao({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
+			const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
 			await newAlocation.save();
 			response.redirect('/');
 		}

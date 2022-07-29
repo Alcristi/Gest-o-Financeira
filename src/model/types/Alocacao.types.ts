@@ -1,5 +1,5 @@
 
-export type TAlocacao = {
+export type TypeAllocation = {
 	cnpj: string,
 	razaoSocial: string,
 	operacao: string,
