@@ -1,10 +1,6 @@
 import {Alocacao} from '../model/schemas/Alocacao'
 import {Request,Response} from 'express'
 import { TAlocacao } from '../model/types/Alocacao.types';
-import { ConsultJsonDto } from '../model/dto/ConsultJson.dto';
-
-
-
 
 export const registerAlocacao= async (request:Request,response:Response) => {
 

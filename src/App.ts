@@ -2,7 +2,6 @@ import express from "express"
 import { router } from "./routes/router";
 import mongoose from "mongoose";
 import path from 'path'
-import { Console } from "console";
 
 export class App{
 	public	server: express.Application;
@@ -33,8 +32,6 @@ export class App{
 	}
 
 	private connectDatabase():void{
-		console.log(this.database)
-
 		mongoose.connect(this.database)
 		.then(()=>console.log('connect with Db'))
 		.catch(err => console.log(err.message))
