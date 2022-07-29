@@ -4,37 +4,34 @@
                     <div class="col-md-8">
                         <h2>NODE.JS MVC</h2>
                         <div class="card">
-                            <div class="card-header">Login</div>
+                            <div class="card-header">Register</div>
                             <div class="card-body">
 
-                                <form class="form-horizontal" method="post" action="/login">
-
+                                <form class="form-horizontal" method="post" action="/consult">
 
                                     <div class="form-group">
-                                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                        <label for="cnpj" class="cols-sm-2 control-label">CNPJ</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="XX. XXX. XXX/0001-XX" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valor" class="cols-sm-2 control-label">Valor atual da Cota</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                                                <input type="number" step=".001" class="form-control" name="valor" id="valor" placeholder="R$" />
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="password" class="cols-sm-2 control-label">Password</label>
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+									<div class="form-group ">
+                                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block login-button">Consultar</button>
                                     </div>
                                     <div class="login-register">
-                                        <a href="/register">Register</a>
+                                        <a href="/">Home</a>
                                     </div>
                                 </form>
                             </div>
@@ -43,6 +40,6 @@
                     </div>
                 </div>
 </div>
-
+<%- include('footer.ejs'); %>
 </body>
 </html>

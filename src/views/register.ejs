@@ -1,0 +1,90 @@
+<%- include('layout.ejs'); %>
+<div class="container">
+<div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <h2 class="text-center mt-5 mb-5">Gestão Financeira SA</h2>
+                        <div class="card">
+                            <div class="card-header text-center">Cadastre Sua Alocação Financeira</div>
+                            <div class="card-body">
+
+                                <form class="form-horizontal" method="post" action="/register">
+
+                                    <div class="form-group">
+                                        <label for="cnpj" class="cols-sm-2 control-label">CNPJ</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="XX. XXX. XXX/0001-XX" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="razaoSocial" class="cols-sm-2 control-label">Razão Social</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="razaoSocial" id="razaoSocial" placeholder="Nome da Empresa" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flexr-row justify-content-around">
+										<div class="form-group d-flex align-content-center ">
+											<label for="operacao" id="btnCompra" onclick="getElementById('operacaoCompra').checked = true;getElementById('btnVenda').classList.remove('radioButton2');getElementById('btnVenda').classList.add('radioButton');this.classList.remove('radioButton');this.classList.add('radioButton2')" class="cols-sm-2 radioButton control-label d-flex align-content-center">
+												<span class="marginButtonCompra">Compra</span>
+												<input type="radio" class="d-none form-control" name="operacao" id="operacaoCompra" value="compra" />
+											</label>
+										</div>
+										<div class="form-group">
+											<label for="operacao" id ="btnVenda" onclick="getElementById('operacaoVenda').checked = true; getElementById('btnCompra').classList.remove('radioButton2');getElementById('btnCompra').classList.add('radioButton');this.classList.remove('radioButton');this.classList.add('radioButton2') " class=" cols-sm-2 radioButton control-label d-flex align-content-center">
+												<span class="marginButtonVenda">Venda</span>
+												<input type="radio" class="d-none form-control" name="operacao" id="operacaoVenda" value="venda"/>
+											</label>
+										</div>
+									</div>
+
+                                    <div class="form-group">
+                                        <label for="dataOperacao" class="cols-sm-2 control-label">Data da Operação</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="data" class=" form-control" name="dataOperacao" id="dataOperacao" placeholder="DD/MM/AAAA"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="form-group">
+                                        <label for="cotas" class="cols-sm-2 control-label">Numero de Cotas</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="number" class="form-control" name="cotas" id="cotas" placeholder="00" />
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="form-group">
+                                        <label for="valor" class="cols-sm-2 control-label">Valor da Cota</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="number" step=".001" class="form-control" name="valor" id="valor" placeholder="R$" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block login-button">Cadastrar</button>
+                                    </div>
+                                    <div class="login-register">
+                                        <a href="/" class="text-dark">Home</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+</div>
+<%- include('footer.ejs'); %>
+</body>
+</html>
+
