@@ -7,21 +7,19 @@ export const registerAllocation = async (request:Request,response:Response) => {
 	let {cnpj,razaoSocial,operacao,dataOperacao,cotas,valor}:TypeAllocation = request.body;
 	if(!cnpj || !razaoSocial || !operacao || !dataOperacao || !cotas || !valor){
 		console.log(request.body);
-		response.status(401).send({error:'Fill field is empty'});
-		response.redirect('register');
+		return response.status(400).send({error:'Fill field is empty'});
 	}
 	else
 	{
 		try{
 			console.log(request.body)
 			const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
-			await newAlocation.save();
-			response.redirect('/');
+			//await newAlocation.save();
+			return response.status(201).send(await newAlocation.save())
 		}
 		catch(err: any)
 		{
-			response.status(401).send({error:err.message});
-			response.redirect('register');
+			return response.status(400).send({error:err.message});
 		}
 
 	}

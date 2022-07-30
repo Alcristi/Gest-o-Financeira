@@ -20,7 +20,7 @@ export const consultAllocation= async(request:Request,response:Response) => {
 			retorno: retornoCotas(alocacoes,valor),
 			saldo: valor*totalDeCotas(alocacoes),
 			};
-			return response.render('consultView',{responseJson})
+			return response.status(200).send(responseJson)
 		}
 		else
 			throw new Error("CNPJ não encontrado")
