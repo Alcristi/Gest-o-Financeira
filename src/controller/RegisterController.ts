@@ -1,6 +1,7 @@
 import {Allocation} from '../model/schemas/Allocation'
 import {Request,Response} from 'express'
 import { TypeAllocation } from '../model/types/Alocacao.types';
+import mongoose from 'mongoose';
 
 export const registerAllocation = async (request:Request,response:Response) => {
 
@@ -14,6 +15,7 @@ export const registerAllocation = async (request:Request,response:Response) => {
 		try{
 			console.log(request.body)
 			const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
+			newAlocation._id instanceof mongoose.Types.ObjectId
 			//await newAlocation.save();
 			return response.status(201).send(await newAlocation.save())
 		}

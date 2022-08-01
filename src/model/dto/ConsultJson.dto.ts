@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 export class ConsultJsonDto {
-	id:Types.ObjectId|undefined;
+	id?:Types.ObjectId|undefined;
 	cnpj:string | undefined;
 	razaoSocial:string | undefined
 	dataConsulta:string | undefined;

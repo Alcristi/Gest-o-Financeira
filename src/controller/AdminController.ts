@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { TypeAllocation } from "../model/types/Alocacao.types";
 import {Allocation} from "../model/schemas/Allocation"
 import { StringifyOptions } from "querystring";
+import mongoose from "mongoose";
 
 export const listOperations = async (request:Request, response:Response) =>{
 	const {initialDate,finalDate}:{initialDate:string,finalDate:string} = request.body;
@@ -40,8 +41,9 @@ export const editAllocation = async (request:Request, response:Response) =>
 
 	try{
 		console.log(id)
-		const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
-		let data = await Allocation.findByIdAndUpdate(id,newAlocation);
+		//const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
+		//newAlocation._id instanceof  mongoose.Types.ObjectId
+		let data = await Allocation.findByIdAndUpdate(id,{_id:id,cnpj:cnpj,razaoSocial:razaoSocial,operacao:operacao,dataOperacao:dataOperacao,cotas:cotas,valor:valor});
 		console.log(data);
 		return response.sendStatus(201)
 	}
@@ -52,6 +54,25 @@ export const editAllocation = async (request:Request, response:Response) =>
 	}
 }
 
+export const deleteAllocantion = async (request:Request, response:Response) =>
+{
+	const {id}:{id:string} =request.body
+
+	try{
+		console.log(request.body)
+		//const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
+		//newAlocation._id instanceof  mongoose.Types.ObjectId
+		let dataDelte = await Allocation.findByIdAndDelete(id);
+		console.log(id);
+		console.log(dataDelte);
+		return response.sendStatus(200)
+	}
+	catch(err:any)
+	{
+		console.log(err);
+		return response.status(400).send({error:err.message})
+	}
+}
 const checkDate = (allocations:Array<TypeAllocation>,initialDate:string,finalDate:string):Array<TypeAllocation>=>{
 	let allocationValid:Array<TypeAllocation> = [];
 

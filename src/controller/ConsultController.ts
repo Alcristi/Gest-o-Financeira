@@ -12,7 +12,6 @@ export const consultAllocation= async(request:Request,response:Response) => {
 		if(alocacoes[0] !== undefined)
 		{
 			let responseJson:ConsultJsonDto = {
-			id:alocacoes[0]._id,
 			cnpj:cnpj,
 			razaoSocial:alocacoes[0].razaoSocial,
 			dataConsulta:parseData(),
