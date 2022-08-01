@@ -8,9 +8,11 @@ export const consultAllocation= async(request:Request,response:Response) => {
 	const {cnpj,valor}:{cnpj:string,valor:number} = request.body;
 	try{
 		let alocacoes = await Allocation.find({cnpj})
+		console.log(alocacoes)
 		if(alocacoes[0] !== undefined)
 		{
 			let responseJson:ConsultJsonDto = {
+			id:alocacoes[0]._id,
 			cnpj:cnpj,
 			razaoSocial:alocacoes[0].razaoSocial,
 			dataConsulta:parseData(),

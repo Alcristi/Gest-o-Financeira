@@ -1,4 +1,7 @@
+import { Types } from "mongoose";
+
 export class ConsultJsonDto {
+	id:Types.ObjectId|undefined;
 	cnpj:string | undefined;
 	razaoSocial:string | undefined
 	dataConsulta:string | undefined;
@@ -9,6 +12,7 @@ export class ConsultJsonDto {
 	saldo:number | undefined;
 	constructor(consultJsonDto?: Partial<ConsultJsonDto>)
 	{
+		this.id = consultJsonDto?.id;
 		this.cnpj = consultJsonDto?.cnpj
 		this.razaoSocial = consultJsonDto?.razaoSocial;
 		this.dataConsulta = consultJsonDto?.dataConsulta
