@@ -7,7 +7,6 @@ export const registerAllocation = async (request:Request,response:Response) => {
 
 	let {cnpj,razaoSocial,operacao,dataOperacao,cotas,valor}:TypeAllocation = request.body;
 	if(!cnpj || !razaoSocial || !operacao || !dataOperacao || !cotas || !valor){
-		console.log(request.body);
 		return response.status(400).send({error:'Fill field is empty'});
 	}
 	else
@@ -16,7 +15,6 @@ export const registerAllocation = async (request:Request,response:Response) => {
 			console.log(request.body)
 			const newAlocation = new Allocation({cnpj,razaoSocial,operacao,dataOperacao,cotas,valor});
 			newAlocation._id instanceof mongoose.Types.ObjectId
-			//await newAlocation.save();
 			return response.status(201).send(await newAlocation.save())
 		}
 		catch(err: any)

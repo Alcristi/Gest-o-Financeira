@@ -11,7 +11,7 @@ export class App{
 	constructor(){
 		this.server = express();
 		this.port = process.env.PORT || 3000;
-		this.database = process.env.MONGOLAB_URI || "";
+		this.database = process.env.MONGO || "";
 		this.middleware();
 		this.router();
 		this.setViews();
