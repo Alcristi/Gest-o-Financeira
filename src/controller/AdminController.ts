@@ -32,7 +32,7 @@ export type TypeAllocationId = {
 	dataOperacao: string,
 	cotas: number,
 	valor: number
-}
+}ttu
 
 
 export const editAllocation = async (request:Request, response:Response) =>
